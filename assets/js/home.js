@@ -22,7 +22,7 @@ function create() {
 const rows = document.querySelectorAll(".productRow")
 
 function logout(){
-    sessionStorage.setItem("auth", false)
+    sessionStorage.setItem("auth", "false")
     window.location = "../index.html"
 }
 function add() {
