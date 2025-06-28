@@ -12,6 +12,7 @@ function auth(){
         if (user.password == password.value) {
             alert("Bienvenido a inventario");
             sessionStorage.setItem("auth", true)
+            sessionStorage.setItem("correo", email)
             window.location = "../other/home.html"
         } else {
           alert("Datos incorrectos");
@@ -31,7 +32,7 @@ function register(){
     let password = document.getElementById('password').value;
     let name = document.getElementById('name').value;
     let lastname = document.getElementById('lastname').value;
-    let inventario = JSON.parse(localStorage.getItem("Inventario")) || {};
+    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
     email.innerHTML = "";
     let users = JSON.parse(localStorage.getItem("users")) || {};
     if(users[email]){
@@ -43,9 +44,9 @@ function register(){
     }
     else
     {
-        users[email] = {"name": name, "lastname":lastname, "password": password}
         inventario[email] = {}
         localStorage.setItem("inventario", JSON.stringify(inventario));
+        users[email] = {"name": name, "lastname":lastname, "password": password}
         localStorage.setItem("users", JSON.stringify(users));
         alert("Usuario creado satisfactoriamente")
         window.location = "../login.html"

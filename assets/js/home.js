@@ -1,18 +1,18 @@
    let id = null;
    window.onload = function(){
-    let products2 = JSON.parse(localStorage.getItem("products2")) || {};
+    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
+    let corr = sessionStorage.getItem("correo");
     const productTable = document.getElementById("products")
-    for(i in products2){
+    for(i in inventario[corr]){
          productTable.innerHTML += `<tr class="productRow">
                     <td scope="row"><strong>${i}</strong></td>
-                    <td>${products2[i].name}</td>
-                    <td>${products2[i].price}</td>
-                    <td>${products2[i].description}</td>
+                    <td>${inventario[corr][i].name}</td>
+                    <td>${inventario[corr][i].price}</td>
+                    <td>${inventario[corr][i].description}</td>
                     <td><button onclick="deleteProduct(this)" class="btn btn-danger">Eliminar</button></td>
                     <td><button onclick="create2(this)" class="btn btn-warning">Actualizar</button></td>
                 </tr>`
     }
-    console.log(products2)
 }
 function create() {
     const form = document.getElementById("product-form")
@@ -35,16 +35,17 @@ function add() {
     }
     else{
     let counter = Number(localStorage.getItem("counter")) || 0;
+    let corr = sessionStorage.getItem("correo");
     counter++
-    let products2 = JSON.parse(localStorage.getItem("products2")) || {};
-    products2[correo][counter] = {"name": productName.value.toLowerCase(), "price":productPrice.value.toLowerCase(), "description": productDescription.value.toLowerCase()}
-    localStorage.setItem("products2", JSON.stringify(products2));
+    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
+    inventario[corr][counter] = {"name": productName.value.toLowerCase(), "price":productPrice.value.toLowerCase(), "description": productDescription.value.toLowerCase()}
+    localStorage.setItem("inventario", JSON.stringify(inventario));
     localStorage.setItem("counter", counter)
     productTable.innerHTML += `<tr class="productRow">
                     <td scope="row"><strong>${counter}</strong></td>
-                    <td>${products2[counter].name}</td>
-                    <td>${products2[counter].price}</td>
-                    <td>${products2[counter].description}</td>
+                    <td>${inventario[corr][counter].name}</td>
+                    <td>${inventario[corr][counter].price}</td>
+                    <td>${inventario[corr][counter].description}</td>
                     <td><button onclick="deleteProduct(this)" class="btn btn-danger">Eliminar</button></td>
                     <td><button onclick="create2(this)" class="btn btn-warning">Actualizar</button></td>
                     </tr>`
