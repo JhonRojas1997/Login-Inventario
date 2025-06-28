@@ -1,22 +1,15 @@
 
 window.onload = function(){
     let users = JSON.parse(localStorage.getItem("users")) || {};
-    let correo = JSON.parse(localStorage.getItem("usuarios")) || {};
-    
 }
 function auth(){
     let email = document.getElementById('email').value.toLowerCase();
     let password = document.getElementById('password');
     let users = JSON.parse(localStorage.getItem("users")) || {};
-    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
     
     if (users[email]){
         let user = users[email]
         if (user.password == password.value) {
-            if (!inventario[email]){
-                inventario[email] = {}
-            }
-            localStorage.setItem("inventario", JSON.stringify(inventario));
             alert("Bienvenido a inventario");
             sessionStorage.setItem("auth", true)
             window.location = "../other/home.html"
@@ -50,6 +43,8 @@ function register(){
     else
     {
         users[email] = {"name": name, "lastname":lastname, "password": password}
+        inventario[email] = {}
+        localStorage.setItem("inventario", JSON.stringify(inventario));
         localStorage.setItem("users", JSON.stringify(users));
         alert("Usuario creado satisfactoriamente")
         window.location = "../login.html"
