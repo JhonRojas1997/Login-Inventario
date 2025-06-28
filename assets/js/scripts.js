@@ -31,8 +31,9 @@ function register(){
     let password = document.getElementById('password').value;
     let name = document.getElementById('name').value;
     let lastname = document.getElementById('lastname').value;
+    let inventario = JSON.parse(localStorage.getItem("Inventario")) || {};
     email.innerHTML = "";
-    let users =JSON.parse(localStorage.getItem("users")) || {};
+    let users = JSON.parse(localStorage.getItem("users")) || {};
     if(users[email]){
         alert("Este Correo ya se encuentra registrado, Inicia sesion");
         window.location = "../login.html"

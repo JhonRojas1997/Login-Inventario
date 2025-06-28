@@ -30,7 +30,6 @@ function add() {
     const productPrice = document.getElementById("productPrice")
     const productDescription = document.getElementById("productDescription")
     const productTable = document.getElementById("products")
-    let correo = sessionStorage.getItem("usuario");
     if(!productName.value || !productDescription.value || !productPrice.value){
         alert("Campos vacios. Llene todos los campos")
     }
