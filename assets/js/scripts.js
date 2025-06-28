@@ -13,7 +13,6 @@ function auth(){
     if (users[email]){
         let user = users[email]
         if (user.password == password.value) {
-            sessionStorage
             alert("Bienvenido a inventario");
             sessionStorage.setItem("auth", true)
             sessionStorage.setItem("usuario", email)
