@@ -1,22 +1,18 @@
 
 window.onload = function(){
     let users = JSON.parse(localStorage.getItem("users")) || {};
-    let correo = sessionStorage.getItem("usuario");
-    
 }
 function auth(){
     let email = document.getElementById('email').value.toLowerCase();
     let password = document.getElementById('password');
     let users = JSON.parse(localStorage.getItem("users")) || {};
-    let correo = sessionStorage.getItem("usuario");
     
     if (users[email]){
         let user = users[email]
         if (user.password == password.value) {
-            sessionStorage
             alert("Bienvenido a inventario");
             sessionStorage.setItem("auth", true)
-            sessionStorage.setItem("usuario", email)
+            sessionStorage.setItem("correo", email)
             window.location = "../other/home.html"
         } else {
           alert("Datos incorrectos");
@@ -36,8 +32,9 @@ function register(){
     let password = document.getElementById('password').value;
     let name = document.getElementById('name').value;
     let lastname = document.getElementById('lastname').value;
+    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
     email.innerHTML = "";
-    let users =JSON.parse(localStorage.getItem("users")) || {};
+    let users = JSON.parse(localStorage.getItem("users")) || {};
     if(users[email]){
         alert("Este Correo ya se encuentra registrado, Inicia sesion");
         window.location = "../login.html"
@@ -47,6 +44,8 @@ function register(){
     }
     else
     {
+        inventario[email] = {}
+        localStorage.setItem("inventario", JSON.stringify(inventario));
         users[email] = {"name": name, "lastname":lastname, "password": password}
         localStorage.setItem("users", JSON.stringify(users));
         alert("Usuario creado satisfactoriamente")
