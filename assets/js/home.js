@@ -23,7 +23,7 @@ const rows = document.querySelectorAll(".productRow")
 
 function logout(){
     sessionStorage.setItem("auth", false)
-    window.location = "../login.html"
+    window.location = "../index.html"
 }
 function add() {
     const productName = document.getElementById("productName")
