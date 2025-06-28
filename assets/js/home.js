@@ -65,7 +65,7 @@ function update() {
   const productName2 = document.getElementById("productName2");
   const productPrice2 = document.getElementById("productPrice2");
   const productDescription2 = document.getElementById("productDescription2");
-  let products2 = JSON.parse(localStorage.getItem("products2")) || {};
+  let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
   if (productName2.value)
   {
     products2[id] = {
@@ -107,9 +107,10 @@ function update() {
 function deleteProduct(button) {
     const row = button.closest("tr");
     const id = row.querySelector("td").innerText.trim("")
-    let products2 = JSON.parse(localStorage.getItem("products2")) || {};
-    delete products2[id];
-    localStorage.setItem("products2", JSON.stringify(products2));
+    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
+    let corr = sessionStorage.getItem("correo");
+    delete inventario[corr][id];
+    localStorage.setItem("inventario", JSON.stringify(inventario));
     location.reload();
 }
 
