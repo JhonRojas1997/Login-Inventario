@@ -49,7 +49,7 @@ function register(){
         users[email] = {"name": name, "lastname":lastname, "password": password}
         localStorage.setItem("users", JSON.stringify(users));
         alert("Usuario creado satisfactoriamente")
-        window.location = "../login.html"
+        window.location = "../index.html"
     }
     console.log(users)
      
