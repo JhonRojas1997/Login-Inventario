@@ -66,28 +66,29 @@ function update() {
   const productPrice2 = document.getElementById("productPrice2");
   const productDescription2 = document.getElementById("productDescription2");
   let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
+  let corr = sessionStorage.getItem("correo");
   if (productName2.value)
   {
-    products2[id] = {
+    inventario[corr][id] = {
     name: productName2.value.toLowerCase(),
-    price: products2[id].price,
-    description : products2[id].description
+    price: inventario[corr][id].price,
+    description : inventario[corr][id].description
     };
     };
   if (productPrice2.value)
   {
-    products2[id] = {
-    name : products2[id].name,
+    inventario[corr][id] = {
+    name : inventario[corr][id].name,
     price: productPrice2.value.toLowerCase(),
-    description : products2[id].description
+    description : inventario[corr][id].description
 
     };
     };
     if (productDescription2.value)
   {
-    products2[id] = {
-    name : products2[id].name,
-    price: products2[id].price,
+    inventario[corr][id] = {
+    name : inventario[corr][id].name,
+    price: inventario[corr][id].price,
     description: productDescription2.value.toLowerCase()
   };
     };
@@ -97,9 +98,9 @@ function update() {
         alert(" No relleno ningun campo");
     }
 
-  localStorage.setItem("products2", JSON.stringify(products2));
+  localStorage.setItem("inventario", JSON.stringify(inventario));
   document.getElementById("updtProductForm")?.reset();
-  console.log("Producto actualizado:", products2[id]);
+  console.log("Producto actualizado:", inventario[corr][id]);
   location.reload();
 }
 
