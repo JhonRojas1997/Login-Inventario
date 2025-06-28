@@ -1,18 +1,22 @@
 
 window.onload = function(){
     let users = JSON.parse(localStorage.getItem("users")) || {};
+    let correo = sessionStorage.getItem("usuario");
     
 }
 function auth(){
     let email = document.getElementById('email').value.toLowerCase();
     let password = document.getElementById('password');
     let users = JSON.parse(localStorage.getItem("users")) || {};
+    let correo = sessionStorage.getItem("usuario");
     
     if (users[email]){
         let user = users[email]
         if (user.password == password.value) {
+            sessionStorage
             alert("Bienvenido a inventario");
             sessionStorage.setItem("auth", true)
+            sessionStorage.setItem("usuario", email)
             window.location = "../other/home.html"
         } else {
           alert("Datos incorrectos");
