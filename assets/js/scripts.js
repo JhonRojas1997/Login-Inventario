@@ -1,21 +1,24 @@
 
 window.onload = function(){
     let users = JSON.parse(localStorage.getItem("users")) || {};
-    let correo = sessionStorage.getItem("usuario");
+    let correo = JSON.parse(localStorage.getItem("usuarios")) || {};
     
 }
 function auth(){
     let email = document.getElementById('email').value.toLowerCase();
     let password = document.getElementById('password');
     let users = JSON.parse(localStorage.getItem("users")) || {};
-    let correo = sessionStorage.getItem("usuario");
+    let inventario = JSON.parse(localStorage.getItem("inventario")) || {};
     
     if (users[email]){
         let user = users[email]
         if (user.password == password.value) {
+            if (!inventario[email]){
+                inventario[email] = {}
+            }
+            localStorage.setItem("inventario", JSON.stringify(inventario));
             alert("Bienvenido a inventario");
             sessionStorage.setItem("auth", true)
-            sessionStorage.setItem("usuario", email)
             window.location = "../other/home.html"
         } else {
           alert("Datos incorrectos");

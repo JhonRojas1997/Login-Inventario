@@ -30,7 +30,7 @@ function add() {
     const productPrice = document.getElementById("productPrice")
     const productDescription = document.getElementById("productDescription")
     const productTable = document.getElementById("products")
-    
+    let correo = sessionStorage.getItem("usuario");
     if(!productName.value || !productDescription.value || !productPrice.value){
         alert("Campos vacios. Llene todos los campos")
     }
@@ -38,7 +38,7 @@ function add() {
     let counter = Number(localStorage.getItem("counter")) || 0;
     counter++
     let products2 = JSON.parse(localStorage.getItem("products2")) || {};
-    products2[counter] = {"name": productName.value.toLowerCase(), "price":productPrice.value.toLowerCase(), "description": productDescription.value.toLowerCase()}
+    products2[correo][counter] = {"name": productName.value.toLowerCase(), "price":productPrice.value.toLowerCase(), "description": productDescription.value.toLowerCase()}
     localStorage.setItem("products2", JSON.stringify(products2));
     localStorage.setItem("counter", counter)
     productTable.innerHTML += `<tr class="productRow">
